@@ -5,3 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "budget-api"
 version = "0.0.1"
+dependencies = [
+    "fastapi",
+    "uvicorn"
+]
+
+[project.optional-dependencies]
+all = [
+    "budget_api[dev]"
+]
+dev = [
+    "pytest"
+]
