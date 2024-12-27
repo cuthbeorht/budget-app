@@ -3,3 +3,9 @@
 ## Requirements
 
 For persistence, the data will be stored in a database.
+
+## Running Backend app locally
+
+Install all dependencies: `pip install -U -e '.[all]'`
+
+`cd backend && uvicorn budget-api:app`
