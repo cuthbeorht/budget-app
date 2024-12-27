@@ -15,5 +15,6 @@ all = [
     "budgeting[dev]"
 ]
 dev = [
+    "httpx",
     "pytest"
 ]

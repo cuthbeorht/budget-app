@@ -1,11 +1,12 @@
 from __future__ import annotations
+import logging
 
 from fastapi import APIRouter
 
 router = APIRouter(
-    prefix="/statements"
+    prefix="/statements"    
 )
 
 @router.post("/")
 async def upload():
-    pass
+    logging.info("Uploading a statement")

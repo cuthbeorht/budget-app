@@ -9,7 +9,7 @@ def app() -> FastAPI:
     # Logging config
     logging_config()
     
-    app = FastAPI()
+    app = FastAPI(ignore_trailing_slash=True)
     
     # Setup Routers
     routers(app)
@@ -18,10 +18,16 @@ def app() -> FastAPI:
 
 def routers(app: FastAPI):
     
-    app.include_router(StatementRouter)
+    routers_to_configure = [
+        StatementRouter
+    ]
+    
+    for router in routers_to_configure:
+        logging.info(f"Configuring router: {str(router)}")
+        app.include_router(router)
 
 def logging_config() -> None:    
-    logger = logging.getLogger("uvicorn.error")
-    logger.setLevel(logging.DEBUG)
+    logging.getLogger("uvicorn.error")
+    logging.basicConfig(level=logging.DEBUG)
     
-    logger.info("Logger configured")
+    logging.info("Logger configured")
