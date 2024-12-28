@@ -3,11 +3,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 import pytest
 
-@pytest.fixture()
-def empty_statement_file(
-    project_root: Path    
-) -> Path:
-    return project_root.joinpath("test/fixtures/statements/empty-statement.csv")
+
 
 
     
