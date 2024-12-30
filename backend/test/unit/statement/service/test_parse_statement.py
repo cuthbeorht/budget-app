@@ -19,8 +19,11 @@ def valid_statement_contents(
 def test_given_valid_statement_csv_parse_expect_transactions_persisted(
     valid_statement_contents: str
 ):
+    statement_repository_mock = Mock()
+    statement_repository_mock.find_by_hash = Mock(return_value=None)
+    
     service = StatementParserService(
-        repository=Mock()
+        repository=statement_repository_mock
     )
     
     command = StatementParseCommand(contents=valid_statement_contents)

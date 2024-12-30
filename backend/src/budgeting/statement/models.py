@@ -9,3 +9,4 @@ class StatementParseCommand(BaseModel):
     """
     
     contents: str
+    
