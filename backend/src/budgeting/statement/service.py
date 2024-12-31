@@ -1,6 +1,4 @@
 from __future__ import annotations
-from typing import BinaryIO
-
 
 from budgeting.statement.models import StatementParseCommand
 import hashlib
