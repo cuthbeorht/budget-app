@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "budgeting"
+version = "0.0.1"
+dependencies = [
+    "fastapi",
+    "python-multipart",
+    "uvicorn"
+]
+
+[project.optional-dependencies]
+all = [
+    "budgeting[dev]"
+]
+dev = [
+    "httpx",
+    "pytest"
+]
