@@ -4,6 +4,7 @@ from uuid import UUID
 from datetime import datetime
 
 from budgeting.database import Repository
+from budgeting.transaction import Transaction
 
 class StatementRepository(Repository):
     """

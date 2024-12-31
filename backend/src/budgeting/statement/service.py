@@ -19,7 +19,7 @@ class StatementParserService:
         self._hash = hashlib.new("md5", usedforsecurity=False)
     
     def parse(self, command: StatementParseCommand) -> None:
-        for line_no, line in enumerate(command.contents):
+        for line_no, line in enumerate(command.contents.split("\n")):
             
             # Ignore the header and first few lines
             if line_no < 4:
