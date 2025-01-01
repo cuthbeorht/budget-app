@@ -24,5 +24,5 @@ async def upload(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Error with file upload")
     
     
-    # service.parse(files.file)
+    service.parse(stmt.file)
     
