@@ -17,7 +17,8 @@
                 "--log-level",
                 "debug"
             ],
-            "jinja": true
+            "jinja": true,
+            "justMyCode": false
         }
     ]
 }
