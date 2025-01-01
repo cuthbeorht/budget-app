@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging, services
+from typing import Annotated
 
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
@@ -10,7 +11,7 @@ router = APIRouter(
 )
 
 @router.post("/")
-async def upload(file: UploadFile, service = Depends(services.statement_parser_service)):
+async def upload(file: UploadFile):
     logging.info("Uploading a statement")
     
     if file.size == 0:
@@ -18,5 +19,5 @@ async def upload(file: UploadFile, service = Depends(services.statement_parser_s
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Error with file upload")
     
     
-    service.parse(file.file)
+    # service.parse(files.file)
     
