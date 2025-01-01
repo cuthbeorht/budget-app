@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from budgeting.statement.service import StatementParserService
-import logging, services
+import logging
 from typing import Annotated
+from budgeting.services import statement_parser_service
 
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
@@ -14,7 +15,7 @@ router = APIRouter(
 @router.post("/")
 async def upload(
     stmt: UploadFile, 
-    # service: StatementParserService = Depends(services.statement_parser_service)
+    service: StatementParserService = Depends(statement_parser_service)
 ):
     logging.info("Uploading a statement")
     

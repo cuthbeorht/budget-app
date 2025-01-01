@@ -12,7 +12,6 @@ def empty_statement_contents(
 
 def test_given_valid_statement_upload_expect_successful_api_call(
     test_client: TestClient,
-    valid_statement_contents: str,
     valid_statement_file: Path
 ):       
     response = test_client.post("/statements/", files={"stmt": valid_statement_file.open("rb")})
@@ -22,7 +21,6 @@ def test_given_valid_statement_upload_expect_successful_api_call(
     
 def test_given_empty_statement_upload_execpt_400(
     test_client: TestClient,
-    empty_statement_contents: str,
     empty_statement_file: Path
 ):
     response = test_client.post("/statements/", files={"stmt": empty_statement_file.open("rb") })
