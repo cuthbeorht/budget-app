@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-import logging, services
+from budgeting.statement.service import StatementParserService
+import logging
+from typing import Annotated
+from budgeting.services import statement_parser_service
 
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
@@ -10,13 +13,16 @@ router = APIRouter(
 )
 
 @router.post("/")
-async def upload(file: UploadFile, service = Depends(services.statement_parser_service)):
+async def upload(
+    stmt: UploadFile, 
+    service: StatementParserService = Depends(statement_parser_service)
+):
     logging.info("Uploading a statement")
     
-    if file.size == 0:
+    if stmt.size == 0:
         logging.error(f"File size is zero")
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Error with file upload")
     
     
-    service.parse(file.file)
+    await service.parse(stmt.file)
     

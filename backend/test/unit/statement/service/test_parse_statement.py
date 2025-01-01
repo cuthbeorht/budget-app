@@ -16,7 +16,8 @@ def valid_statement_contents(
         return f.read()
 
 
-def test_given_valid_statement_csv_parse_expect_transactions_persisted(
+@pytest.mark.asyncio
+async def test_given_valid_statement_csv_parse_expect_transactions_persisted(
     valid_statement_contents: str
 ):
     statement_repository_mock = Mock()
@@ -28,4 +29,4 @@ def test_given_valid_statement_csv_parse_expect_transactions_persisted(
     
     command = StatementParseCommand(contents=valid_statement_contents)
     
-    service.parse(command)
+    await service.parse(command)

@@ -6,7 +6,7 @@ from budgeting.statement.service import StatementParserService
 from fastapi import Depends
 
 def statement_repository() -> Repository:
-    return StatementRepository()
+    return StatementRepository("connection")
 
 def statement_parser_service(repository = Depends(statement_repository)) -> StatementParserService:
     return StatementParserService(repository=repository)
