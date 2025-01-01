@@ -15,7 +15,7 @@ class StatementParserService:
         self._repository = repository
         self._hash = hashlib.new("md5", usedforsecurity=False)
     
-    def parse(self, command: StatementParseCommand) -> None:
+    async def parse(self, command: StatementParseCommand) -> None:
         for line_no, line in enumerate(command.contents):
             
             # Ignore the header and first few lines

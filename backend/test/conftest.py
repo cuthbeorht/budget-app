@@ -10,7 +10,7 @@ from budgeting.services import statement_parser_service
 @pytest.fixture
 def parser_service_mock():
     async def service_mock():
-        return Mock()
+        return AsyncMock()
     
     return service_mock
 

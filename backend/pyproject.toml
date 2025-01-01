@@ -17,5 +17,6 @@ all = [
 ]
 dev = [
     "httpx",
-    "pytest"
+    "pytest",
+    "pytest-asyncio"
 ]
