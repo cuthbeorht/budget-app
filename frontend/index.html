@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Budgeting</title>
+    </head>
+    <body>
+        <form>
+            <label >Upload file</label>
+            <input type="file" id="fileUpload" />
+            <input type="submit" />
+        </form>
+    </body>
+    <script type="text/javascript">
+
+        const form = document.querySelector("form");
+        form.addEventListener("submit", uploadFile);
+
+        function uploadFile(event) {
+            console.log("uploading file");
+
+            const fetchOptions = {
+                method: "POST",
+                body: event.target[0].value
+            }
+
+            fetch("http://localhost:8000/statements/", fetchOptions);
+
+            event.preventDefault();
+        }
+    </script>
+</html>
