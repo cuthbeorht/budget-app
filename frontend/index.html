@@ -22,7 +22,10 @@
                 body: event.target[0].value
             }
 
-            fetch("http://localhost:8000/statements/", fetchOptions);
+            fetch("http://localhost:8000/statements/", fetchOptions)
+                .then(j => j.json())
+                .then(res => console.log(res))
+                .catch(err => console.error(err));
 
             event.preventDefault();
         }
