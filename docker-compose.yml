@@ -1,0 +1,10 @@
+services:
+  database:
+    image: postgres:latest
+    container_name: database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: budget_user
+      POSTGRES_PASSWORD: resu_tegdub
+      POSTGRES_DB: budget

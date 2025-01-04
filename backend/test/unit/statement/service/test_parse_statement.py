@@ -2,8 +2,8 @@ from pathlib import Path
 from typing import BinaryIO, Generator
 from unittest.mock import Mock
 
-from budgeting.statement.models import StatementParseCommand
-from budgeting.statement.service import StatementParserService
+from budgeting.domains.statement.models import StatementParseCommand
+from budgeting.domains.statement.service import StatementParserService
 import pytest
 
 @pytest.fixture

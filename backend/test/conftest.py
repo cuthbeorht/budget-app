@@ -1,6 +1,6 @@
 from pathlib import Path
 from unittest.mock import AsyncMock, Mock
-from budgeting.statement.service import StatementParserService
+from budgeting.domains.statement.service import StatementParserService
 from fastapi.testclient import TestClient
 
 from budgeting import app

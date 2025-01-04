@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from budgeting.statement.service import StatementParserService
+from budgeting.domains.statement.service import StatementParserService
 import logging
 from typing import Annotated
 from budgeting.services import statement_parser_service

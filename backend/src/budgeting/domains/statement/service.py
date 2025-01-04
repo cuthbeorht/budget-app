@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from budgeting.statement.models import StatementParseCommand
+from budgeting.domains.statement.models import StatementParseCommand
 import hashlib
 
-from budgeting.statement.repository import StatementRepository
+from budgeting.domains.statement.repository import StatementRepository
 
 
 class StatementParserService:

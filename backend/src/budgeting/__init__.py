@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 import logging
 
-from budgeting.statement.http import router as StatementRouter
+from budgeting.domains.statement.http import router as StatementRouter
 
 def app() -> FastAPI:
     # Logging config

@@ -7,7 +7,10 @@ name = "budgeting"
 version = "0.0.1"
 dependencies = [
     "fastapi",
+    "pydantic",
+    "pydantic_settings",
     "python-multipart",
+    "SQLAlchemy",
     "uvicorn"
 ]
 
@@ -18,5 +21,5 @@ all = [
 dev = [
     "httpx",
     "pytest",
-    "pytest-asyncio"
+    "pytest-asyncio",
 ]
