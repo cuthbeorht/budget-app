@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "budget" {
 
 resource "azurerm_postgresql_server" "budget" {
   name = "budget-1"
-  location = "canadaeast"
+  location = var.dev_location
   resource_group_name = azurerm_resource_group.budget.name
 
   sku_name = var.postrgres_sku_name
