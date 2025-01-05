@@ -3,7 +3,7 @@ from __future__ import annotations
 from budgeting.domains.statement.models import StatementParseCommand
 import hashlib
 
-from budgeting.domains.statement.repository import StatementRepository
+from budgeting.domains.transaction.repository import TransactionRepository
 
 
 class StatementParserService:
@@ -11,8 +11,9 @@ class StatementParserService:
     
     """
     
-    def __init__(self, repository: StatementRepository):
-        self._repository = repository
+    def __init__(self, transaction_repository: TransactionRepository):
+        
+        self._transaction_repository = transaction_repository
         self._hash = hashlib.new("md5", usedforsecurity=False)
     
     async def parse(self, command: StatementParseCommand) -> None:
@@ -25,7 +26,7 @@ class StatementParserService:
                 self._hash.update(line.encode())
                 transaction_hash = self._hash.hexdigest()
                 
-                found = self._repository.find_by_hash(transaction_hash)
+                found = self._transaction_repository.find_by_hash(transaction_hash)
                 if not found:                                
                     transaction_data = line.split(",")
                 
