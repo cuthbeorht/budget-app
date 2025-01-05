@@ -19,7 +19,8 @@ all = [
     "budgeting[dev]"
 ]
 dev = [
+    "alembic",
     "httpx",
     "pytest",
-    "pytest-asyncio",
+    "pytest-asyncio",    
 ]
