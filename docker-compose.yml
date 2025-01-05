@@ -8,3 +8,15 @@ services:
       POSTGRES_USER: budget_user
       POSTGRES_PASSWORD: resu_tegdub
       POSTGRES_DB: budget
+  api:
+    container_name: budgeting
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_USERNAME: budget_user
+      DATABASE_PASSWORD: resu_tegdub
+      DATABASE_HOST: database
+      DATABASE_NAME: budget

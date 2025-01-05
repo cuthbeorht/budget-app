@@ -6,7 +6,6 @@ from budgeting.database import Repository
 from budgeting.domains.statement.repository import StatementRepository
 from budgeting.domains.statement.service import StatementParserService
 from fastapi import Depends
-from pytest import Config
 from sqlalchemy import Engine, create_engine
 
 def configs() -> Configuration:
