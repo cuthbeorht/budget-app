@@ -19,6 +19,23 @@
             ],
             "jinja": true,
             "justMyCode": false
+        }, {
+            "name": "Alembic Upgrade",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "alembic",
+            "args": [
+                "upgrade",
+                "head"
+            ],
+            "cwd": "${workspaceFolder}/backend",
+            "env": {
+                "DATABASE_USERNAME": "budget_user",
+                "DATABASE_PASSWORD": "resu_tegdub",
+                "DATABASE_HOST": "localhost",
+                "DATABASE_NAME": "budget"
+            }
         }
+
     ]
 }

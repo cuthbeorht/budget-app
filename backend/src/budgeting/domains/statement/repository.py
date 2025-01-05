@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from typing import Any
-from uuid import UUID
+import uuid
+from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 from budgeting.database import Entity
 
@@ -28,7 +29,7 @@ class Statement(Entity):
     
     __tablename__ = "statements"
     
-    id: Mapped[UUID] = mapped_column(primary_key=True)
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     """
     
     """

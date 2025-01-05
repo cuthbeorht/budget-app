@@ -1,9 +1,11 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
+from budgeting import app
+from sqlalchemy import create_engine, engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from budgeting.services import Configuration, engine
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -37,7 +39,8 @@ def run_migrations_offline() -> None:
     Calls to context.execute() here emit the given string to the
     script output.
 
-    """
+    """    
+    app_configs = Configuration()
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url,
@@ -57,13 +60,14 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
+    app_configs = Configuration()
+    engine = create_engine(
+        url=f"postgresql://{app_configs.database_username}:{app_configs.database_password}@{app_configs.database_host}:{app_configs.database_port}/{app_configs.database_name}",
+        echo=True
     )
 
-    with connectable.connect() as connection:
+    # with connectable.connect() as connection:
+    with engine.connect() as connection:
         context.configure(
             connection=connection, target_metadata=target_metadata
         )
