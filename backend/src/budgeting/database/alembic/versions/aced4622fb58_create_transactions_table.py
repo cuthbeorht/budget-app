@@ -25,7 +25,7 @@ def upgrade() -> None:
         sa.Column("transaction_date", sa.DateTime),
         sa.Column("posting_date", sa.DateTime),
         sa.Column("amount", sa.Numeric(8, 2)),
-        sa.Column("description", sa.String(100)),
+        sa.Column("description", sa.Text),
         sa.Column("transaction_hash", sa.String(100))
     )
 

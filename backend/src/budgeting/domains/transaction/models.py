@@ -1,11 +1,12 @@
 from __future__ import annotations
+from typing import Optional
 
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
 
 class Transaction(BaseModel):
-    id: UUID
+    id: Optional[UUID] = None
     """
     
     """
@@ -26,6 +27,16 @@ class Transaction(BaseModel):
     """
     
     transaction_amount: float
+    """
+    
+    """
+    
+    description: str
+    """
+    
+    """
+    
+    transaction_hash: str
     """
     
     """

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from budgeting.domains.statement.models import StatementParseCommand
 from budgeting.domains.statement.service import StatementParserService
 import logging
 from typing import Annotated
@@ -24,5 +25,5 @@ async def upload(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Error with file upload")
     
     
-    await service.parse(stmt.file)
+    await service.parse(StatementParseCommand(contents=stmt.file.read()))
     

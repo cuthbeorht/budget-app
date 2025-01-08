@@ -18,7 +18,13 @@
                 "debug"
             ],
             "jinja": true,
-            "justMyCode": false
+            "justMyCode": false,
+            "env": {
+                "DATABASE_USERNAME": "budget_user",
+                "DATABASE_PASSWORD": "resu_tegdub",
+                "DATABASE_HOST": "localhost",
+                "DATABASE_NAME": "budget"
+            }
         }, {
             "name": "Alembic Upgrade",
             "type": "debugpy",
