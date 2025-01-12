@@ -1,10 +1,11 @@
 import { Link } from "react-router";
+import './Menu.css';
 
 export default function Menu() {
     return (
-        <nav>
-            <Link to="/" >Home</Link>
-            <Link to="/statements" >Statements</Link>
-        </nav>
+        <ul>
+            <li><Link to="/" >Home</Link></li>
+            <li><Link to="/statements" >Statements</Link></li>
+        </ul>
     );
 }
