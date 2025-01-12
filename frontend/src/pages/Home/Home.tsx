@@ -1,9 +1,16 @@
+import { Outlet } from "react-router";
+import Menu from "../../components/Menu/Menu";
+
 export default function Home() {
     return (
-        <>
-            <p>
-                Home
-            </p>
-        </>
+        <div>
+            <section>
+                <Menu />
+            </section>            
+            <section>
+                <Outlet />
+            </section>
+            
+        </div>
     );
 }
