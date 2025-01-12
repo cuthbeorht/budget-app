@@ -3,7 +3,6 @@ import { ChangeEvent } from "react";
 
 export default function Statements() {
     
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
         console.log("handle upload");
 
