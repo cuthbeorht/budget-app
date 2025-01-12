@@ -10,3 +10,5 @@ frontend/build/
 **/.terraform
 *.lock.hcl
 *.pytest_cache
+**/.env
+**/node_modules
