@@ -1,10 +1,9 @@
 from __future__ import annotations
-from typing import Optional
+from typing import List, Optional
 
 from budgeting.database import Entity, Repository
-from budgeting.domains import transaction
 from budgeting.domains.transaction.models import Transaction
-from sqlalchemy import UUID, Connection, DateTime, Numeric, String, Text, insert, select
+from sqlalchemy import UUID, DateTime, Numeric, Text, insert, select
 from sqlalchemy.orm import Mapped, mapped_column, Session
 import uuid
 from datetime import datetime
@@ -40,6 +39,14 @@ class TransactionRepository(Repository):
         
         self._session.add_all([entity])
         self._session.commit()
+    
+    def list(self) -> List[TransactionEntity]:
+        """
+        
+        """
+        stmt = select(TransactionEntity)
+        tx = self._session.scalars(stmt)
+        return tx
 
 class TransactionEntity(Entity):
     """
