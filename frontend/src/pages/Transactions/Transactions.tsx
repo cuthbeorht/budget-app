@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 
+interface Transaction {
+    id: string;
+    creditCardNumber: string;
+    dateRecorded: string;
+    datePosted: string;
+    amount: number;
+    description?: string;
+}
+
 export default function Transactions() {
     
-    const [transactions, setTransactions] = useState([]);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     
     useEffect(() => {
         
@@ -12,8 +21,16 @@ export default function Transactions() {
     
             }
             const response = await fetch("http://localhost:8000/transactions", httpOptions)
-            const transactions = await response.json();
-            setTransactions(transactions["transactions"]);
+            const transactionsJson = await response.json();
+            const transactions: Transaction[] = transactionsJson["transactions"].map((tx: unknown) => {return {
+                id: tx["id"],
+                creditCardNumber: tx["credit_card_number"],
+                dateRecorded: tx["transaction_date"],
+                datePosted: tx["date_posted"],
+                amount: tx["transaction_amount"],
+                description: tx["description"]
+            }});
+            setTransactions(transactions);
         }
         fetchData();        
     }, [transactions])
@@ -22,13 +39,34 @@ export default function Transactions() {
         <>
             <h1>Transactions</h1>
             <div>
-                <ul>
+                <table>
+                    <thead>
+                    <tr>
+             
+                        <td>Card Number</td>
+                        <td>Date Recorded</td>
+                        <td>Date Posted</td>
+                        <td>Amount</td>
+                        <td>Description</td>
+                 
+                    </tr>
+                    </thead>
+                    <tbody>
                     {
-                        transactions.map(tx => {
-                            return <li>{tx.id}</li>
+                        transactions.map((tx: Transaction) => {
+                            return (
+                                <tr key={tx.id}>
+                                    <td>{tx.creditCardNumber}</td>                                    
+                                    <td>{tx.dateRecorded}</td>
+                                    <td>{tx.datePosted}</td>
+                                    <td>{tx.amount}</td>
+                                    <td>{tx.description}</td>                                    
+                                </tr>
+                            );
                         })
                     }
-                </ul>
+                    </tbody>
+                </table>
             </div>
         </>
     );
