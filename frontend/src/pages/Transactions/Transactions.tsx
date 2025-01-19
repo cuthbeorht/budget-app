@@ -9,6 +9,16 @@ interface Transaction {
     description?: string;
 }
 
+interface TransactionDTO {
+    id: string;
+    credit_card_number: string;
+    transaction_date: string;
+    date_posted: string;
+    transaction_amount: number;
+    description?: string;
+    transaction_hash: string;
+}
+
 export default function Transactions() {
     
     const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -22,7 +32,7 @@ export default function Transactions() {
             }
             const response = await fetch("http://localhost:8000/transactions", httpOptions)
             const transactionsJson = await response.json();
-            const transactions: Transaction[] = transactionsJson.transactions.map((tx: unknown) => {return {
+            const transactions: Transaction[] = transactionsJson.transactions.map((tx: TransactionDTO) => {return {
                 id: tx.id,
                 creditCardNumber: tx.credit_card_number,
                 dateRecorded: tx.transaction_date,
