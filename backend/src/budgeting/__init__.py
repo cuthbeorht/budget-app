@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 
 from budgeting.domains.statement.http import router as StatementRouter
+from budgeting.domains.transaction.http import router as TransactionRouter
 
 def app() -> FastAPI:
     # Logging config
@@ -28,7 +29,8 @@ def app() -> FastAPI:
 def routers(app: FastAPI):
     
     routers_to_configure = [
-        StatementRouter
+        StatementRouter,
+        TransactionRouter
     ]
     
     for router in routers_to_configure:

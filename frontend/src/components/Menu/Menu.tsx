@@ -6,6 +6,7 @@ export default function Menu() {
         <ul>
             <li><Link to="/" >Home</Link></li>
             <li><Link to="/statements" >Statements</Link></li>
+            <li><Link to="/transactions" >Transactions</Link></li>
         </ul>
     );
 }

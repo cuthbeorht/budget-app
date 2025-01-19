@@ -1,11 +1,13 @@
 from __future__ import annotations
 from logging import config
+import re
 
 from budgeting.configs import Configuration
 from budgeting.database import Repository
 
 from budgeting.domains.statement.service import StatementParserService
 from budgeting.domains.transaction.repository import TransactionRepository
+from budgeting.domains.transaction.service import TransactionService
 from fastapi import Depends
 from sqlalchemy import Engine, create_engine
 from sqlalchemy.orm import Session
@@ -28,3 +30,6 @@ def transaction_repository(session: Session = Depends(session)) -> TransactionRe
 
 def statement_parser_service(repository = Depends(transaction_repository)) -> StatementParserService:
     return StatementParserService(transaction_repository=repository)
+
+def transaction_service(repository: TransactionRepository = Depends(transaction_repository)) -> TransactionService:
+    return TransactionService(repository=repository)
