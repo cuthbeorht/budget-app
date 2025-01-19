@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Transactions.css';
 
 interface Transaction {
     id: string;
@@ -7,6 +8,16 @@ interface Transaction {
     datePosted: string;
     amount: number;
     description?: string;
+}
+
+interface TransactionDTO {
+    id: string;
+    credit_card_number: string;
+    transaction_date: string;
+    date_posted: string;
+    transaction_amount: number;
+    description?: string;
+    transaction_hash: string;
 }
 
 export default function Transactions() {
@@ -22,26 +33,26 @@ export default function Transactions() {
             }
             const response = await fetch("http://localhost:8000/transactions", httpOptions)
             const transactionsJson = await response.json();
-            const transactions: Transaction[] = transactionsJson["transactions"].map((tx: unknown) => {return {
-                id: tx["id"],
-                creditCardNumber: tx["credit_card_number"],
-                dateRecorded: tx["transaction_date"],
-                datePosted: tx["date_posted"],
-                amount: tx["transaction_amount"],
-                description: tx["description"]
+            const transactions: Transaction[] = transactionsJson.transactions.map((tx: TransactionDTO) => {return {
+                id: tx.id,
+                creditCardNumber: tx.credit_card_number,
+                dateRecorded: tx.transaction_date,
+                datePosted: tx.date_posted,
+                amount: tx.transaction_amount,
+                description: tx.description
             }});
             setTransactions(transactions);
         }
         fetchData();        
-    }, [transactions])
+    }, [])
 
     return (
         <>
             <h1>Transactions</h1>
             <div>
-                <table>
+                <table className="noSpacing">
                     <thead>
-                    <tr>
+                    <tr className="transactionTableHeader">
              
                         <td>Card Number</td>
                         <td>Date Recorded</td>
@@ -53,14 +64,14 @@ export default function Transactions() {
                     </thead>
                     <tbody>
                     {
-                        transactions.map((tx: Transaction) => {
+                        transactions.map((tx: Transaction, index: number) => {
                             return (
-                                <tr key={tx.id}>
+                                <tr key={tx.id} className={index % 2 === 0? "tableRowEven": "tableRowOdd"}>
                                     <td>{tx.creditCardNumber}</td>                                    
                                     <td>{tx.dateRecorded}</td>
                                     <td>{tx.datePosted}</td>
                                     <td>{tx.amount}</td>
-                                    <td>{tx.description}</td>                                    
+                                    <td className="descriptionLimit">{tx.description}</td>                                    
                                 </tr>
                             );
                         })
