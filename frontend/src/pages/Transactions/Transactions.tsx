@@ -22,18 +22,18 @@ export default function Transactions() {
             }
             const response = await fetch("http://localhost:8000/transactions", httpOptions)
             const transactionsJson = await response.json();
-            const transactions: Transaction[] = transactionsJson["transactions"].map((tx: unknown) => {return {
-                id: tx["id"],
-                creditCardNumber: tx["credit_card_number"],
-                dateRecorded: tx["transaction_date"],
-                datePosted: tx["date_posted"],
-                amount: tx["transaction_amount"],
-                description: tx["description"]
+            const transactions: Transaction[] = transactionsJson.transactions.map((tx: unknown) => {return {
+                id: tx.id,
+                creditCardNumber: tx.credit_card_number,
+                dateRecorded: tx.transaction_date,
+                datePosted: tx.date_posted,
+                amount: tx.transaction_amount,
+                description: tx.description
             }});
             setTransactions(transactions);
         }
         fetchData();        
-    }, [transactions])
+    }, [])
 
     return (
         <>
